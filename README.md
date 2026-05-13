@@ -60,7 +60,7 @@ IO复用使用select, poll和epoll来实现。epoll改进了前两者，更加�
 
 模块 3：服务端 Socket 初始化与监听
 
- // 1. 创建TCP流式套接字，IPv4协议族，返回Socket文件描述符
+     // 1. 创建TCP流式套接字，IPv4协议族，返回Socket文件描述符
     int sockfd = socket(AF_INET , SOCK_STREAM ,0);
 
     // 2. 配置服务端地址结构体，清零后赋值
