@@ -49,11 +49,11 @@ IO复用使用select, poll和epoll来实现。epoll改进了前两者，更加�
 
 模块 2：非阻塞文件描述符设置函数
 
-void setnonBlock(int fd)
-{
-    // 获取fd原有状态标记，追加O_NONBLOCK非阻塞标记，重新设置给fd
-    fcntl(fd , F_SETFL ,fcntl(fd , F_GETFL)|O_NONBLOCK);
-}
+    void setnonBlock(int fd)
+    {
+        // 获取fd原有状态标记，追加O_NONBLOCK非阻塞标记，重新设置给fd
+        fcntl(fd , F_SETFL ,fcntl(fd , F_GETFL)|O_NONBLOCK);
+    }
 
 这是 epoll ET 模式的必备前置函数，所有加入 epoll 的文件描述符（监听 Socket、客户端 Socket）都必须设置非阻塞
 通过fcntl修改文件描述符状态，不改变原有标记，仅新增非阻塞属性
