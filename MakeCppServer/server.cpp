@@ -61,29 +61,18 @@ int main()
         for (int i = 0; i < nfds; ++i)
         {
             if (events[i].data.fd == sockfd)
-            {
-                while (1)
-                {
-                    sockaddr_in client_addr;
-                    socklen_t client_addr_len = sizeof(client_addr);
-                    memset(&client_addr, 0, sizeof(client_addr));
+            {  
+                sockaddr_in client_addr;
+                socklen_t client_addr_len = sizeof(client_addr);
+                memset(&client_addr, 0, sizeof(client_addr));
 
-                    int client_sockfd = accept(sockfd, (sockaddr*)&client_addr, &client_addr_len);
-                    if (client_sockfd == -1 && (errno == EAGAIN || errno == EWOULDBLOCK))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        errif(client_sockfd == -1 , "client_sokcfd is failed!!!");
-                    }
-                    memset(&ev, 0, sizeof(ev));
-                    ev.data.fd = client_sockfd;
-                    ev.events = EPOLLIN | EPOLLET;
-                    setnonBlock(client_sockfd);
-                    epoll_ctl(epfd, EPOLL_CTL_ADD, client_sockfd, &ev);
-                }
-                
+                int client_sockfd = accept(sockfd, (sockaddr*)&client_addr, &client_addr_len);
+               
+                memset(&ev, 0, sizeof(ev));
+                ev.data.fd = client_sockfd;
+                ev.events = EPOLLIN | EPOLLET;
+                setnonBlock(client_sockfd);
+                epoll_ctl(epfd, EPOLL_CTL_ADD, client_sockfd, &ev);
             }
             else if (events[i].events & EPOLLIN)  //接收客户端消息
             {
