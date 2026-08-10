@@ -1,0 +1,18 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "make",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceFolder}/6_Server"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "使用 Makefile 编译 server 和 client"
+        }
+    ],
+    "version": "2.0.0"
+}

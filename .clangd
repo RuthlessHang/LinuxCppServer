@@ -1,0 +1,6 @@
+CompileFlags:          # 编译选项配置
+  Add:                 # 给所有文件额外添加以下编译参数
+    - -I6_Server/src   # 告诉 clangd 去 6_Server/src/ 找头文件
+    - -I7_Acceptor/src # 告诉 clangd 去 7_Acceptor/src/ 找头文件
+    - -I8_TCP/src   # 告诉 clangd 去 8_TCP/src/ 找头文件
+    - -std=c++11       # 使用 C++11 标准
