@@ -60,6 +60,11 @@ void Connection::handleReadEvent(int sockfd)
                 if(bytes_written == -1)
                 {
                     std::cerr << "socket write failed: " << strerror(errno) << std::endl;
+                    if(m_deleteConnectionCallback)
+                    {
+                        m_deleteConnectionCallback(m_sock);
+                    }
+                    break;
                 }
                 read_buffer->clear();
                 break;
